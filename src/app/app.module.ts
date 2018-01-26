@@ -1,15 +1,24 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ProductListComponent } from './products/product-list.component';
 import { AppComponent } from './app.component';
+import {FormsModule} from '@angular/forms';
+import {ConvertToSpacesPipe} from './shared/convert-to-spaces.pipe';
+import {StarComponent} from './shared/star.component';
+import {HttpClientModule} from '@angular/common/http';
 
-// class that defines this module
+//  class that defines this module
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ProductListComponent,
+    ConvertToSpacesPipe,
+    StarComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
