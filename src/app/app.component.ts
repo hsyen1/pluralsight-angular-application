@@ -16,8 +16,26 @@ import {ProductService} from './products/product.service';
   selector: 'pm-root',
   // {{pageTitle}} is an example of interpolation
   template: `
-    <div><h1>{{pageTitle}}</h1>
-      <pm-products></pm-products>
+    <!--navbar default: the default style for the navigation bar on boostrap-->
+    <!--container-fluid: full width container, spanning the entire width of the viewport
+      -- navbar-brand: used to highlight the brand or logo of the page
+      -- navbar-nav: a list/link inside a navbar-->
+    <div>
+      <nav class='navbar navbar-default'>
+        <div class='container-fluid'>
+          <a class='navbar-brand'>{{ pageTitle }}</a>
+          <ul class='nav navbar-nav'>
+            <!--binding
+              -- the path specified is then bind to the URL-->
+            <li><a [routerLink]="['/welcome']">Home</a></li>
+            <li><a [routerLink]="['/products']">Product List</a></li>
+          </ul>
+        </div>
+      </nav>
+      <div class='container'>
+        <!--the specified path of the component is then injected to this directive (renders the component's page)-->
+        <router-outlet></router-outlet>
+      </div>
     </div>
   `,
   providers: [ProductService]
