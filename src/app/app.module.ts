@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ProductDetailComponent } from './products/product-detail.component';
 import { WelcomeComponent } from './home/welcome.component';
 import {RouterModule} from '@angular/router';
+import { ProductGuardService } from './products/product-guard.service';
 
 //  class that defines this module
 @NgModule({
@@ -28,12 +29,15 @@ import {RouterModule} from '@angular/router';
     // order matters
     RouterModule.forRoot([
       { path: 'products', component: ProductListComponent },
-      { path: 'products/:id', component: ProductDetailComponent },
+      // canActivate service is added to guard the routing
+      { path: 'products/:id',
+        canActivate: [ ProductGuardService ],
+        component: ProductDetailComponent },
       { path: 'welcome', component: WelcomeComponent },
       { path: '**', redirectTo: 'welcome', pathMatch: 'full' }
     ])
   ],
-  providers: [],
+  providers: [ProductGuardService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
